@@ -1,0 +1,13 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: 1px dodgerblue solid;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+}

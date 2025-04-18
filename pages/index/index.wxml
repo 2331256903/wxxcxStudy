@@ -1,0 +1,118 @@
+<!--index.wxml-->
+<!-- 
+  微信小程序Mustachey语法的应用场景, 类似Vue
+  1. 绑定内容
+  2. 绑定属性
+  3. 运算(三元运算, 算术运算等)
+ -->
+<!-- 动态绑定内容: -->
+<view>{{ info }}</view>
+<!-- 动态绑定属性: -->
+<image src="{{imgSrc}}" mode="widthFix"></image>
+<!-- 三元运算: -->
+<view>{{ randomNum1 >= 5 ? '数字大于等于5' : '数字小于5' }}</view>
+<!-- 算数运算: -->
+<view>{{ randomNum2 * 100 }}</view>
+
+<!-- 
+  事件: 渲染层到逻辑层的通信方式, 用户在渲染层触发事件, 事件传递到逻辑层进行业务处理
+  小程序中常用事件
+  tap 绑定方式 bindtap  类似click,手指触摸后离开
+  inout 绑定方式bindinput  文本框的输入事件
+  change 绑定方式bindchange  状态改变时触发
+ -->
+<!-- 
+  事件对象的属性裂变
+  事件回调触发时, 会收到一个事件对象event,  它的详细属性如下:
+  属性           类型            说明
+  type          String          事件类型 input等
+  timeStamp     integer         页面打开直到触发事件所经过的毫秒数
+  target(重要)   Object          触发事件的组件的一些属性值集合
+  currentTarget  Object         当前组件的一些属性值集合
+  detail(重要)   Object         额外的信息
+  touches        Array          触摸事件, 当前停留在一屏幕中的触摸点信息的数组, 多个手指的触摸点信息等
+  changedTouches Array          触摸事件, 当前事件触发时, 发生变化的触摸点信息的数组
+-->
+<!-- 
+    注:
+  1. target和currentTarget的区别: target是触发该事件的源头组件, 而currentTarget就是当前事件所绑定的组件, 如下
+  点击内部的按钮时, 点击事件以冒泡的形式向外扩散, 也会触发外层的view的tap事件处理函数,此时对于外层的view来说
+  (1). e.target指向的是当前正在触发事件的源头组件, 因此e.target是内部的按钮按键;
+  (2). e.currentTarget指向的是当前正在触发事件的那个组件, 因此e.currentTarget是当前的view组件
+-->
+<view class="outer-view" bindtap="outerHandler">
+  <button type="primary" bindtap="innerHandler">按钮</button>
+</view>
+
+<!-- 
+  bindtap的语法格式
+  在小程序中, 不存在HTML中的onclick鼠标点击事件, 而是通过tap事件来响应用户的触摸行为
+  ① 通过bindtap可以为组件绑定tap触摸事件, 语法如上
+  ② 在页面的.js文件中定义对应的事件处理函数, 和data平级, 事件参数通过形参event(一般简写成e)来接收
+-->
+<!-- 
+  在事件处理函数中为data中的数据赋值
+  通过调用this.setData(dataObject)方法, 可以给页面data中的数据重新赋值, 示例:
+  changeCount() {
+    this.setData({
+      count: this.data.count + 1
+    })
+  }
+-->
+<view>
+  {{ 'count: ' + count }}
+  <button type="primary" bind:tap="countChange">count+1</button>
+</view>
+
+<!-- 
+  事件传参: 小程序的事件传参比较特殊, 不能在绑定事件的同时为事件处理函数传参, 例如下面代码不能正常工作
+    <button type="primary" bindTap="btnHandler(123)">事件传参</button>
+    小程序会将bindTap属性值统一当做事件名称来处理, 相当于调用一个名为btnHandler(123)的事件处理函数
+  正确操作: 为组件提供data-*的自定义属性传参, 其中*代表的是参数的名字, 示例如下:
+-->
+<button type="primary" bind:tap="btnHandler1" data-info="{{2}}">事件传参</button>
+<!-- 
+  此处info会被解析为参数的名字; 数值2会被解析为参数的值(如果省略了{{}}, 默认传递字符串格式)
+  然后在事件处理函数中, 通过event.target.dataset.参数名 即可获取到具体参数的值
+-->
+
+<!-- 
+  bindinput的语法格式
+  在小程序中, 通过input事件来响应文本框的输入事件, 语法格式如下:
+  ① 通过bindinput可以为文本框绑定输入事件
+  ② 在事件处理函数中, 通过e.datail.value获取输入后的文本
+-->
+<input type="text" bindinput="inputHandler1"/>
+
+<!-- 
+  实现文本框和data之间的数据同步
+  实现步骤: 
+    ① 定义数据
+    ② 渲染结构
+    ③ 美化样式
+    ④ 绑定input事件处理函数
+-->
+<view>
+  {{ msg }}
+</view>
+<input type="text" value="{{msg}}" bindinput="inputHandler2"/>
+
+<!-- 
+  条件渲染
+  1. wx:if
+  小程序中, 使用wx:if="{{condition}}"来判断是否需要渲染该代码块
+  也可以配合wx:else和wx:elif来添加else判断
+-->
+<view wx:if="{{type===1}}">男</view>
+<view wx:elif="{{type===2}}">女</view>
+<view wx:else>保密</view>
+
+<!-- 
+  结合<block>使用wx:if
+  在小程序中, <block>并不是一个组件, 它只是一个包裹性质的容器, 不会在页面中做任何渲染
+  因此, 如果要一次性控制多个组件的展示和隐藏, 可以使用一个<block></block>标签将多个组件包裹起来, 并在<block>标签上使用wx:if控制属性, 示例如下:
+-->
+<block wx:if="{{true}}">
+  <view>view1</view>
+  <view>view2</view>
+</block>
