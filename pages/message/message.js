@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    count: 0
+  },
+  addCount() {
+    this.setData({
+      count: this.data.count + 1
+    })
   },
 
   /**
@@ -47,7 +52,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    console.log('触发了message的下拉刷新')
+    this.setData({
+      count: 0
+    })
+    wx.stopPullDownRefresh()
   },
 
   /**

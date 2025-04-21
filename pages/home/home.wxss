@@ -1,1 +1,5 @@
 /* pages/home/home.wxss */
+.box {
+  height: 2000rpx;
+  background-color: lightskyblue;
+}

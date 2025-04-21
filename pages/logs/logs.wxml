@@ -1,4 +1,6 @@
 <!--logs.wxml-->
+<navigator open-type="navigateBack" delta="1">返回上一页</navigator>
+<button type="primary" bindtap="goBack">返回上一级</button>
 <scroll-view class="scrollarea" scroll-y type="list">
   <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
     <view class="log-item">{{index + 1}}. {{log.date}}</view>

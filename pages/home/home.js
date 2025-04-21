@@ -43,6 +43,23 @@ Page({
   },
 
   /**
+   * 通过编程式导航跳转到tabBar
+   *  */
+  gotoMessage() {
+    wx.switchTab({
+      url: '/pages/message/message'
+    })
+  },
+  /** 
+   * 通过编程式导航跳转非tabBar
+   * */
+  gotoLogs() {
+    wx.navigateTo({
+      url: '/pages/logs/logs?title=logs页&name=张三&age=5',
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
@@ -82,14 +99,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    console.log('触发了上拉触底事件')
   },
 
   /**
