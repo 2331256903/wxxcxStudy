@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/message/message",
+    "pages/contact/contact",
     "pages/test/test",
     "pages/index/index",
     "pages/logs/logs"
@@ -12,6 +15,29 @@
     "backgroundColor": "#efefef",
     "backgroundTextStyle": "dark",
     "onReachBottomDistance": 100
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "home",
+        "iconPath": "/tabs/home.png",
+        "selectedIconPath": "/tabs/home-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "message",
+        "iconPath": "/tabs/message.png",
+        "selectedIconPath": "/tabs/message-active.png"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "text": "contact",
+        "iconPath": "/tabs/contact.png",
+        "selectedIconPath": "/tabs/contact-active.png"
+      }
+
+    ]
   },
   "style": "v2",
   "componentFramework": "glass-easel",

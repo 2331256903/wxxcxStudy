@@ -219,6 +219,38 @@
     注: backgroundTextStyle仅可选light/dark属性
   6. 设置上拉触底的距离:
     概念: 上拉触底是移动端的专有名词, 通过手指在屏幕上的上拉滑动操作, 从而加载更多数据的行为, 设置步骤为: app/json -> window -> 为onReachBottomDistance设置新的数值
-    注: 默认距离是50px, 如果没有特殊需求, 使用默认值即可\
-  6.//7.
+    注: 默认距离是50px, 如果没有特殊需求, 使用默认值即可
+  7. tabBar: 
+    1.tabBar是移动端常见的页面效果, 用于实现多页面的快速切换, 小程序中通常分为顶部/底部tabBar
+    注: 1. tabBar中只能配最少2个, 最多5个tab页签
+        2. 当渲染顶部tabBar时, 不显示icon, 仅显示文本
+
+    2.tabBar的6个组成部分
+    ① backgroundColor: tabBar的背景色
+    ② selectedIconPath: 选中时的图片路径
+    ③ borderStyle: tabBar上边框的颜色
+    ④ iconPath: 未选中时的图片路径
+    ⑤ selectedColor: tab上的文字选中时的颜色
+    ⑥ color: tab上文字的默认颜色
+
+    3. tabBar节点的配置项
+    position String 非必填 bottom tabBar的位置, 仅支持bottom/top
+    borderStyle String 非必填 black tabBar上边框颜色, 仅支持black/white
+    color HexColor 非必填   Tab上的默认颜色
+    selectedColor HexColor 非必填   Tab上的文字选中时的颜色
+    backgroundColor HexColor 非必填   TabBar的背景色
+    list Array 必填     tab 页签的列表 最少2个, 最多5个tab
+      每个tab项的配置选项:
+      pagePath String 必填 页面路径, 页面必须在pages中预先定义
+      text String 必填 tab上显示的文字
+      iconPath String 非必填 未选中时的图标路径, 当position为top时, 不显示icon
+      selectedIconPath String 非必填 选中时的图标路径, 当position为top时, 不显示icon
+    注意: 在tabBar中配置的页面, 在app.json的pages中必须在第一顺位, 否则打开小程序首屏为当前pages第一个页面, 且不显示tabBar
+-->
+
+<!--
+  1. 页面配置文件的作用
+  小程序中, 每个页面都有自己的.json配置文件, 用来对当前页面的窗口外观, 页面效果等进行配置
+  2. 页面配置文件和全局配置的关系
+  样式冲突时, 以页面级别的.json配置文件为准, 从而实现小程序在全局配置后, 每个页面可以拥有特殊的窗口表现
 -->
