@@ -1,12 +1,17 @@
 {
   "pages": [
+    "pages/test/test",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "黑马程序员",
+    "navigationBarBackgroundColor": "#2b4b6b",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#efefef",
+    "backgroundTextStyle": "dark",
+    "onReachBottomDistance": 100
   },
   "style": "v2",
   "componentFramework": "glass-easel",

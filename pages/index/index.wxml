@@ -121,7 +121,7 @@
   hidden
   在小程序中, 直接使用hidden="{{condition}}"也能控制元素的显示和隐藏
 -->
-<view hidden="{{ishidden}}">条件为true的时候隐藏元素否则显示</view>
+<view hidden="{{ishidden}}" class="username">条件为true的时候隐藏元素否则显示</view>
 <!-- 
   注: wx:if与hidden的对比
   wx:if以动态创建和移除元素的方式控制元素的显示和隐藏
@@ -166,4 +166,59 @@
     小程序在不同设备上运行的时候, 会自动把rpx的样式单位换算成对应的像素单位来渲染, 从而实现屏幕适配
     小程序以iphone6作为视觉稿,
       iphone6, 屏幕宽度为375px, 共有750个物理像素, 等分为750rpx, 则1rpx=0.5px=1物理像素
+-->
+
+<!-- 
+  样式导入
+  使用WXSS提供的@import语法, 可以导入外联的样式表
+  语法格式: @import后跟需要导入的外联样式表的相对路径, 用;表示语句结束
+-->
+
+<!-- 
+  全局样式: 
+    定义在app.wxml中的样式为全局样式, 作用于每一个页面
+  局部样式:
+    在页面的.wxml中的样式为局部样式, 仅作用于当前页面, 且注意:
+    ① 当局部样式和 全局样式冲突时, 局部样式会覆盖全局样式
+    ② 当局部样式的权重大于或等于全局样式的权重时, 才会覆盖全局样式
+-->
+
+<!-- 
+  全局配置:
+    小程序根目录下的app.json文件时小程序的全局配置文件, 常用的配置项如下:
+    ① pages
+      记录当前小程序所有页面的存放路径
+    ② window
+      全局设置小程序窗口的外观
+    ③ tabBar
+      设置小程序底部的tabBar效果
+    ④ style
+      是否启用新版的组件样式
+
+  1.小程序窗口的三个组成部分:
+    navigationBar 导航栏区域
+    background 背景区域, 默认不可见, 下拉才显示
+    页面主体区域, 用来显示wxml中的布局
+  2.window节点常用的配置项:
+    navigationBarTItleText String 字符串 导航栏标题文字内容
+    navigationBarBackgroundColor HexColor #000000 导航栏背景颜色
+    navigationBarTextStyle String white 导航栏标题颜色, 仅支持black/white
+    backgroundColor HexColor #ffffff 窗口的背景色
+    backgroundTextStyle String dark 下拉loading样式, 仅支持dark/light
+    enablePullDownRefresh Boolean false 是否去全局开启下拉刷新
+    onReachBottomDistance Number 50 页面上拉触底事件触发时距页面底部距离, 单位为px
+  3. 全局开启下拉刷新功能
+    概念: 下拉刷新时移动端的专有名词, 指的是通过手指在屏幕上的下拉滑动操作, 从而重新加载页面诗句的行为
+    app.json -> window -> 把enablePullDownRefresh的值为true
+    注: 但在app.json中启用下拉刷新功能, 会作用于每个小程序页面; 且模拟器效果和真机存在区别
+    因此通常在页面的app.json单独使用
+  4. 设置下拉刷新背景色
+    当全局开启下拉刷新功能后, 默认的窗口颜色背景为白色, 如果自定义下拉窗口背景色, 设置步骤为app.json->window->为background指定16进制色值
+  5. 设置下拉刷新时的loading样式:
+    当全局开启下拉刷新功能后, 默认窗口的loading样式为白色, 如果要更改loading样式的效果, 设置步骤为 app>json -> window -> 为backgroundTextStyle 属性指定dark值
+    注: backgroundTextStyle仅可选light/dark属性
+  6. 设置上拉触底的距离:
+    概念: 上拉触底是移动端的专有名词, 通过手指在屏幕上的上拉滑动操作, 从而加载更多数据的行为, 设置步骤为: app/json -> window -> 为onReachBottomDistance设置新的数值
+    注: 默认距离是50px, 如果没有特殊需求, 使用默认值即可\
+  6.//7.
 -->

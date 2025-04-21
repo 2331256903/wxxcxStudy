@@ -1,3 +1,4 @@
+/**logs.wxss**/
 page {
   height: 100vh;
   display: flex;

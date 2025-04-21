@@ -1,4 +1,6 @@
 /**index.wxss**/
+@import "/common/common.wxss";
+
 page {
   height: 100vh;
   display: flex;
