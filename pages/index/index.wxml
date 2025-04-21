@@ -253,4 +253,62 @@
   小程序中, 每个页面都有自己的.json配置文件, 用来对当前页面的窗口外观, 页面效果等进行配置
   2. 页面配置文件和全局配置的关系
   样式冲突时, 以页面级别的.json配置文件为准, 从而实现小程序在全局配置后, 每个页面可以拥有特殊的窗口表现
+  3. 页面配置中常用的配置项
+  同全局配置:
+  navigationBarTItleText String 字符串 导航栏标题文字内容
+  navigationBarBackgroundColor HexColor #000000 导航栏背景颜色
+  navigationBarTextStyle String white 导航栏标题颜色, 仅支持black/white
+  backgroundColor HexColor #ffffff 窗口的背景色
+  backgroundTextStyle String dark 下拉loading样式, 仅支持dark/light
+  重要 enablePullDownRefresh Boolean false 是否去全局开启下拉刷新 
+  onReachBottomDistance Number 50 页面上拉触底事件触发时距页面底部距离, 单位为px
+-->
+
+<!--
+  1. 小程序中网络数据请求的限制
+  由于安全性方面的考虑, 小程序官方对数据接口的请求做出了如下两个限制:
+  ① 只能请求https类型的接口
+  ② 必须将接口的域名添加到信任列表中
+  2. 配置request合法域名
+  登录微信开放平台 -> 开发与服务 -> 开发设置 -> 服务器域名 -> 修改request合法域名
+  注意: 
+    1. 域名只支持https协议
+    2. 域名不能使用IP地址或localhost
+    3. 域名必须经过ICP备案
+    4. 服务器域名一个月内最多申请5次修改
+  3. 发起GET请求
+    调用微信小程序提供的顶级全局对象wx中的wx.request()方法, 可以发起GET数据请求, 示例代码如下:
+    wx.request({
+      url: 'https://applet-base-api-t.itheima.net/api/get', // 请求的接口地址, 必须基于https协议
+      method: 'GET', // 请求的方式
+      data: { // 发送到服务器的数据
+        name: 'zs',
+        age: 22
+      },
+      success: (res) => { // 请求成功之后的回调函数
+        console.log(res)
+      }
+    })
+  4. 发起POST请求
+    调用微信小程序提供的顶级全局对象wx中的wx.request()方法, 可以发起POST数据请求, 示例代码如下:
+    wx.request({
+      url: 'https://applet-base-api-t.itheima.net/api/post', // 请求的接口地址, 必须基于https协议
+      method: 'POST', // 请求的方式
+      data: { // 发送到服务器的数据
+        name: 'ls',
+        gender: '男'
+      },
+      success: (res) => { // 请求成功之后的回调函数
+        console.log(res)
+      }
+    })
+
+  5. 在页面刚加载时请求数据
+  在很多情况下, 我们需要在页面刚加载的时候自动请求一些初始化数据, 此时需要在页面的onLoad事件中调用获取数据的函数
+  6. 跳过request合法域名校验
+    如果调试开发过程中, 后端仅提供了http协议端口, 暂时没有提供https协议的接口, 此时为了不耽误开发进度, 可以在微信开发者工具中, 临时开启[开发环境不校验请求域名,TLS版本及HTTPS证书]选项, 跳过request合法域名的校验
+  注: 该选项仅限在开发与调试阶段使用
+  7. 关于跨域和Ajax的说明
+  跨域问题只存在于基于浏览器的Web开发中, 由于小程序的宿主环境不是浏览器, 而是微信客户端, 因此小程序中不存在跨域的问题
+  Ajax技术的核心是依赖于浏览器中的XMLHttpRequest这个对象, 由于小程序的宿主环境是微信客户端, 所以小程序中不能叫做发起Ajax请求, 而是叫做发起网络数据请求
 -->

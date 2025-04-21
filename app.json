@@ -11,7 +11,7 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "黑马程序员",
     "navigationBarBackgroundColor": "#2b4b6b",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "backgroundColor": "#efefef",
     "backgroundTextStyle": "dark",
     "onReachBottomDistance": 100

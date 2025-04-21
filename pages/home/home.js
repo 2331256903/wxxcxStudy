@@ -9,10 +9,45 @@ Page({
   },
 
   /**
+   * 发起GET数据请求
+   *  */
+  getInfo() {
+    wx.request({
+      url: 'https://applet-base-api-t.itheima.net/api/get',
+      method: 'GET',
+      data: {
+        name: 'zs',
+        age: 20
+      },
+      success: (res) => {
+        console.log(res.data, 'get');
+      }
+    })
+  },
+
+  /**
+   * 发起POST数据请求
+   *  */
+  postInfo() {
+    wx.request({
+      url: 'https://applet-base-api-t.itheima.net/api/post', // 请求的接口地址, 必须基于https协议
+      method: 'POST', // 请求的方式
+      data: { // 发送到服务器的数据
+        name: 'ls',
+        gender: '男'
+      },
+      success: (res) => { // 请求成功之后的回调函数
+        console.log(res.data, 'post')
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.getInfo()
+    this.postInfo()
   },
 
   /**

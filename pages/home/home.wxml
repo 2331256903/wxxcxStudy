@@ -1,2 +1,3 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<button type="primary" bindtap="getInfo">发起GET请求</button>
+<button type="primary" bindtap="postInfo">发起POST请求</button>
