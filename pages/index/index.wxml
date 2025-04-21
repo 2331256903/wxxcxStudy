@@ -116,3 +116,54 @@
   <view>view1</view>
   <view>view2</view>
 </block>
+
+<!-- 
+  hidden
+  在小程序中, 直接使用hidden="{{condition}}"也能控制元素的显示和隐藏
+-->
+<view hidden="{{ishidden}}">条件为true的时候隐藏元素否则显示</view>
+<!-- 
+  注: wx:if与hidden的对比
+  wx:if以动态创建和移除元素的方式控制元素的显示和隐藏
+  hidden以切换样式的方式(display: none/block)控制元素的显示和隐藏 性能更高, 频繁切换时建议使用
+-->
+
+<!-- 
+  列表渲染
+  wx:for可以根据指定的数组, 循环渲染重复的组件结构, 默认循环索引名为index, 项目变量名为item 语法示例如下:
+-->
+<view wx:for="{{arr1}}">
+  索引是: {{index}} 当前项是: {{item}}
+</view>
+<!-- 
+  注: 手动指定索引和当前项目的变量名:
+  !. 使用wx:for-index="idx"可以指定当前循环项的索引的变量名
+  2. 使用wx:for-item="itemName"可以指定当前项的变量名
+-->
+<view>~~~~~~~~~~~~~~</view>
+<view wx:for="{{arr1}}" wx:for-index="spindex" wx:for-item="spitem">
+  索引是: {{spindex}} 当前项是: {{spitem}}
+</view>
+<!--
+  类似vue列表渲染的:key, 小程序实现列表渲染时也建议为渲染出来的列表项指定唯一的key值, 从而提高视图更新时的渲染效率
+-->
+
+<!-- 
+  WXSS: WeiXin Style Sheet 
+  WXSS是一套样式语言, 用于美化wxml的组件样式, 类似与网页开发中的CSS
+  WCSS具有CSS大部分特性, 同时WXSS还对CSS进行了扩充和修改, 以适应微信小程序的开发:
+    rpx尺寸单位
+    @import样式导入
+    但css选择器部分不兼容
+-->
+<!-- 
+  1. rpx是微信小程序独有, 用来解决屏幕适配的尺寸单位
+  2. rpx的实现原理:
+    鉴于不同设备屏幕的大小不同, 为了实现屏幕的自动适配, rpx把所有设备的屏幕, 在宽度上等分为750份(即当前屏幕的总宽度为750rpx)
+    导致: 
+      1. 在较小设备上, 1rpx代表的宽度偏小 不常见
+      2. 在较大的设备上, 1rpx代表的宽度较大
+    小程序在不同设备上运行的时候, 会自动把rpx的样式单位换算成对应的像素单位来渲染, 从而实现屏幕适配
+    小程序以iphone6作为视觉稿,
+      iphone6, 屏幕宽度为375px, 共有750个物理像素, 等分为750rpx, 则1rpx=0.5px=1物理像素
+-->

@@ -12,7 +12,11 @@ Page({
     randomNum2: Math.random().toFixed(2),
     count: 0,
     msg: '你好, ',
-    type: 1
+    type: 1,
+    ishidden: false,
+    arr1: [
+      '苹果', '华为', '小米'
+    ]
   },
   innerHandler: function(e) {
     console.log(e, 'innerHandler')
