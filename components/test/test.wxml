@@ -1,0 +1,8 @@
+<!--components/test/test.wxml-->
+<text class="g-red-text">components/test/test.wxml</text>
+<view>count的值是{{count}}</view>
+<button type="primary" bindtap="addCount">自定义组件的方法</button>
+
+<view>{{n1}} + {{n2}} = {{sum}}</view>
+<button size="mini" bindtap="addN1">n1自增</button>
+<button size="mini" bindtap="addN2">n2自增</button>

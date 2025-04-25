@@ -1,0 +1,9 @@
+<!--components/test2/test2.wxml-->
+<view style="background-color: rgb({{fullColor}});" class="colorBox">
+  <text style="color: rgb({{fillColor}}); font-size: 40rpx;">
+    色值: {{fullColor}}
+  </text>
+</view>
+<button size="mini" bindtap="changeR" type="default">R</button>
+<button size="mini" bindtap="changeG" type="primary">G</button>
+<button size="mini" bindtap="changeB" type="warn">B</button>

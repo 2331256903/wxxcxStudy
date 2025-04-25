@@ -7,5 +7,7 @@
 
 <button bindtap="gotoMessage">跳转到消息页面</button>
 <button bindtap="gotoLogs">跳转到logs页面</button>
+<my-test1 max="9"></my-test1>
+<view class="isolated-style">1234</view>
 
-<view class="box"></view>
+<my-test2></my-test2>

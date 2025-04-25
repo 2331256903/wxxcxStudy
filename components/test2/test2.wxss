@@ -1,0 +1,8 @@
+/* components/test2/test2.wxss */
+.colorBox {
+  height: 200rpx;
+  font-size: 24rpx;
+  color: white;
+  text-shadow: 0 0 2rpx black;
+  text-align: center;
+}

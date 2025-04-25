@@ -1,0 +1,5 @@
+/* components/test/test.wxss */
+.isolated-style {
+  font-weight: bolder;
+  background-color: antiquewhite;
+}

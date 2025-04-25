@@ -24,8 +24,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/message/message",
-          "pathName": "pages/message/message",
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
           "query": "",
           "scene": null,
           "launchMode": "default"
